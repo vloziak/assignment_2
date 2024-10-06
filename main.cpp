@@ -2,8 +2,8 @@
 #include <vector>
 
 // Define the size of the board
-const int BOARD_WIDTH = 80;
-const int BOARD_HEIGHT = 25;
+const int BOARD_WIDTH = 200;
+const int BOARD_HEIGHT = 30;
 // Struct to define the board
 struct Board {
     std::vector<std::vector<char> > grid;
@@ -65,11 +65,50 @@ struct Board {
             }
         }
     }
+
+    void drawCircle(int centerX, int centerY, int radius) {
+        int x = radius;
+        int y = 0;
+        int radiusError = 1 - radius;
+
+        while (x >= y) {
+            drawBorders(centerX, centerY, x, y);
+            y++;
+            if (radiusError < 0) {
+                radiusError += 2 * y + 1;
+            } else {
+                x--;
+                radiusError += 2 * (y - x + 1);
+            }
+        }
+    }
+
+    void drawBorders(int centerX, int centerY, int x, int y) {
+        if (centerX + x < BOARD_WIDTH && centerY + y < BOARD_HEIGHT)
+            grid[centerY + y][centerX + x] = '*';
+        if (centerX - x >= 0 && centerY + y < BOARD_HEIGHT)
+            grid[centerY + y][centerX - x] = '*';
+        if (centerX + x < BOARD_WIDTH && centerY - y >= 0)
+            grid[centerY - y][centerX + x] = '*';
+        if (centerX - x >= 0 && centerY - y >= 0)
+            grid[centerY - y][centerX - x] = '*';
+        if (centerY + x < BOARD_HEIGHT && centerX + y < BOARD_WIDTH)
+            grid[centerY + x][centerX + y] = '*';
+        if (centerY + x < BOARD_HEIGHT && centerX - y >= 0)
+            grid[centerY + x][centerX - y] = '*';
+        if (centerY - x >= 0 && centerX + y < BOARD_WIDTH)
+            grid[centerY - x][centerX + y] = '*';
+        if (centerY - x >= 0 && centerX - y >= 0)
+            grid[centerY - x][centerX - y] = '*';
+    }
+
 };
+
 int main() {
     Board board;
     board.drawTriangle(10, 1, 5);
     board.drawSquare(10,20,10,5);
+    board.drawCircle(20,20,10);
     board.print();
     return 0;
 }
