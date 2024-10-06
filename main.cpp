@@ -1,4 +1,5 @@
 #include <iostream>
+#include <sstream>
 #include <vector>
 
 // Define the size of the board
@@ -16,6 +17,11 @@ struct Board {
             std::cout << "\n";
         }
     }
+
+    void clear() {
+        grid.assign(BOARD_HEIGHT, std::vector<char>(BOARD_WIDTH, ' '));
+    }
+
     void drawTriangle(int x, int y, int height) {
         if (height <= 0) return; // Ensure the triangle height is positive and sensible
         for (int i = 0; i < height; ++i) {
@@ -119,10 +125,51 @@ struct Board {
 
 int main() {
     Board board;
-    board.drawLine(10, 20, 15, 90);
-    board.drawLine(10, 10, 5, 180);
-    board.drawLine(10, 5, 20, 60);
+    std::string command;
 
-    board.print();
+    std::cout << "Enter commands:\n";
+
+    while (true) {
+        std::cout << "> ";
+        std::getline(std::cin, command);
+        std::istringstream iss(command);
+        std::string cmd;
+        iss >> cmd;
+
+        if (cmd == "draw") {
+            std::string shape;
+            iss >> shape;
+
+            if (shape == "triangle") {
+                int x, y, height;
+                iss >> x >> y >> height;
+                board.drawTriangle(x, y, height);
+            } else if (shape == "square") {
+                int x, y, width, height;
+                iss >> x >> y >> width >> height;
+                board.drawSquare(x, y, width, height);
+            } else if (shape == "circle") {
+                int x, y, radius;
+                iss >> x >> y >> radius;
+                board.drawCircle(x, y, radius);
+            } else if (shape == "line") {
+                int x, y, length;
+                double angle;
+                iss >> x >> y >> length >> angle;
+                board.drawLine(x, y, length, angle);
+            } else {
+                std::cout << "Unknown shape. Use triangle, square, circle, or line.\n";
+            }
+        } else if (cmd == "print") {
+            board.print();
+        } else if (cmd == "clear") {
+            board.clear();
+        } else if (cmd == "exit") {
+            break;
+        } else {
+            std::cout << "Unknown command. Use 'draw', 'print', 'clear', or 'exit'.\n";
+        }
+    }
+
     return 0;
 }
