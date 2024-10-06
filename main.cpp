@@ -102,13 +102,27 @@ struct Board {
             grid[centerY - x][centerX - y] = '*';
     }
 
+    void drawLine(int startX, int startY, int height, double angle) {
+        double radians = angle * M_PI / 180.0;
+
+        for (int i = 0; i <= height; ++i) {
+            int posX = static_cast<int>(startX + i * cos(radians));
+            int posY = static_cast<int>(startY + i * sin(radians));
+
+            if (posX >= 0 && posX < BOARD_WIDTH && posY >= 0 && posY < BOARD_HEIGHT) {
+                grid[posY][posX] = '*';
+            }
+        }
+    }
+
 };
 
 int main() {
     Board board;
-    board.drawTriangle(10, 1, 5);
-    board.drawSquare(10,20,10,5);
-    board.drawCircle(20,20,10);
+    board.drawLine(10, 20, 15, 90);
+    board.drawLine(10, 10, 5, 180);
+    board.drawLine(10, 5, 20, 60);
+
     board.print();
     return 0;
 }
