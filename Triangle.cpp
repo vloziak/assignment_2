@@ -23,3 +23,9 @@ void Triangle::draw(std::vector<std::vector<char> >& grid) const {
             grid[baseY][baseX] = '*';
     }
 }
+
+std::string Triangle::getInfo() const {
+    return "ID: " + std::to_string(id) + ", Type: Triangle, Coordinates: (" +
+           std::to_string(x) + ", " + std::to_string(y) + "), Height: " +
+           std::to_string(height);
+}

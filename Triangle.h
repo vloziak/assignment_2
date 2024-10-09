@@ -9,6 +9,7 @@ private:
 
 public:
     Triangle(int x, int y, int height);
+    std::string getInfo() const override;
     void draw(std::vector<std::vector<char> >& grid) const override;
 };
 

@@ -5,9 +5,17 @@
 #include <vector>
 
 class Shape {
+protected:
+    int id;
+    static int nextId;
 public:
-    virtual ~Shape() {}
+    Shape() : id(nextId++) {}
+
     virtual void draw(std::vector<std::vector<char> >& grid) const = 0;
+    virtual std::string getInfo() const = 0;
+    int getId() const { return id; }
+
+    virtual ~Shape() {}
 };
 
 

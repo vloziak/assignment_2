@@ -11,6 +11,7 @@ private:
 public:
     Line(int startX, int startY, int length, double angle);
     void draw(std::vector<std::vector<char> >& grid) const override;
+    std::string getInfo() const override;
 };
 
 #endif // LINE_H

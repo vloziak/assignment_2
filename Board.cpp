@@ -1,6 +1,5 @@
 #include "Board.h"
 #include <iostream>
-
 Board::Board() : grid(30, std::vector<char>(200, ' ')) {}
 
 void Board::print() const {
@@ -11,7 +10,6 @@ void Board::print() const {
         std::cout << "\n";
     }
 }
-
 void Board::clear() {
     grid.assign(30, std::vector<char>(200, ' '));
 }
@@ -20,11 +18,22 @@ void Board::addShape(Shape* shape) {
     shapes.push_back(shape);
     shape->draw(grid);
 }
-
 void Board::displayShapes() const {
     std::cout << "List of all available shapes:\n";
     std::cout << "> triangle x y height\n";
     std::cout << "> square x y width height\n";
     std::cout << "> circle x y radius\n";
     std::cout << "> line x y length angle\n";
+}
+
+void Board::listShapes() {
+    if (shapes.empty()) {
+        std::cout << "No shapes available.\n";
+        return;
+    }
+
+    std::cout << "Shapes on the board:\n";
+    for (const Shape* shape : shapes) {
+        std::cout << shape->getInfo() << '\n';
+    }
 }

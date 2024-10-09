@@ -1,7 +1,5 @@
 #include "Circle.h"
-
 Circle::Circle(int centerX, int centerY, int radius) : centerX(centerX), centerY(centerY), radius(radius) {}
-
 
 void Circle::drawBorders(std::vector<std::vector<char> >& grid, int centerX, int centerY, int x, int y) const {
     if (centerX + x < grid[0].size() && centerY + y < grid.size())
@@ -18,7 +16,6 @@ void Circle::draw(std::vector<std::vector<char> >& grid) const {
     int x = radius;
     int y = 0;
     int radiusError = 1 - radius;
-
     while (x >= y) {
         drawBorders(grid, centerX, centerY, x, y);
         y++;
@@ -29,4 +26,11 @@ void Circle::draw(std::vector<std::vector<char> >& grid) const {
             radiusError += 2 * (y - x + 1);
         }
     }
+}
+
+
+std::string Circle::getInfo() const {
+    return "ID: " + std::to_string(id) + ", Type: Triangle, Coordinates: (" +
+           std::to_string(centerX) + ", " + std::to_string(centerY) + "), Radius: " +
+           std::to_string(radius);
 }

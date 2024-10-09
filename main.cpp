@@ -12,6 +12,7 @@ int main() {
 
     std::cout << "Enter commands:\n";
 
+
     while (true) {
         std::cout << "> ";
         std::getline(std::cin, command);
@@ -54,10 +55,14 @@ int main() {
             board.clear();
         } else if (cmd == "shapes") {
             board.displayShapes();
+        } else if (cmd == "help") {
+           std::cout << "help me";
+        } else if (cmd == "list") {
+            board.listShapes();
         } else if (cmd == "exit") {
             break;
         } else {
-            std::cout << "Unknown command. Use 'draw', 'print', 'clear', or 'exit'.\n";
+            std::cout << "Unknown command.\n";
         }
     }
 
