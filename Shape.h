@@ -11,6 +11,7 @@ protected:
 public:
     Shape() : id(nextId++) {}
 
+    friend class Board;
     virtual void draw(std::vector<std::vector<char> >& grid) const = 0;
     virtual std::string getInfoForConsole() const = 0;
     virtual std::string getInfoForFile() const = 0;

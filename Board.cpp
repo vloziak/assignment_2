@@ -3,19 +3,13 @@
 #include "Square.h"
 #include "Circle.h"
 #include "Line.h"
+#include "Shape.h"
 #include <iostream>
 #include <fstream>
 #include <sstream>
 #include <string>
 
 Board::Board() : grid(30, std::vector<char>(100, ' ')) {}
-
-void Board::resetId() {
-    int newId = 0;
-    for (Shape* shape : shapes) {
-        shape->setId(newId++);
-    }
-}
 
 void Board::print() const {
     for (const auto& row : grid) {
@@ -25,9 +19,15 @@ void Board::print() const {
         std::cout << "\n";
     }
 }
-void Board::clear() {
+
+void Board::clearAll() {
     grid.assign(30, std::vector<char>(100, ' '));
     shapes.clear();
+    Shape::nextId = 1;
+}
+
+void Board::clear() {
+    grid.assign(30, std::vector<char>(100, ' '));
 }
 
 void Board::addShape(Shape* shape) {
@@ -42,9 +42,10 @@ void Board::undo() {
         clear();
 
         for (Shape* shape : shapes) {
+            Shape::nextId = shapes.back()->id + 1;
             shape->draw(grid);
         }
-        resetId();
+
 
     }
     else {

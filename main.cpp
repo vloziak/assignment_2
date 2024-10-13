@@ -52,7 +52,7 @@ int main() {
         } else if (cmd == "print") {
             board.print();
         } else if (cmd == "clear") {
-            board.clear();
+            board.clearAll();
         } else if (cmd == "undo") {
             board.undo();
         } else if (cmd == "shapes") {

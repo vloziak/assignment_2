@@ -2,12 +2,14 @@
 #define BOARD_H
 #include <vector>
 #include "Shape.h"
+
 class Board {
     std::vector<std::vector<char> > grid;
     std::vector<Shape*> shapes;
 
 public:
     Board();
+    void clearAll();
     void resetId();
     void print() const;
     void clear();
