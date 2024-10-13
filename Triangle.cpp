@@ -24,8 +24,15 @@ void Triangle::draw(std::vector<std::vector<char> >& grid) const {
     }
 }
 
-std::string Triangle::getInfo() const {
-    return "ID: " + std::to_string(id) + ", Type: Triangle, Coordinates: (" +
+std::string Triangle::getInfoForConsole() const {
+    return "ID: " + std::to_string(getId()) + ", Type: Triangle, Coordinates: (" +
            std::to_string(x) + ", " + std::to_string(y) + "), Height: " +
+           std::to_string(height);
+}
+
+std::string Triangle::getInfoForFile() const {
+    return std::to_string(getId()) + " Triangle " +
+           std::to_string(x) + " " +
+           std::to_string(y) + " " +
            std::to_string(height);
 }

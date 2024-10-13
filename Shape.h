@@ -12,8 +12,10 @@ public:
     Shape() : id(nextId++) {}
 
     virtual void draw(std::vector<std::vector<char> >& grid) const = 0;
-    virtual std::string getInfo() const = 0;
+    virtual std::string getInfoForConsole() const = 0;
+    virtual std::string getInfoForFile() const = 0;
     int getId() const { return id; }
+    void setId(int newId) { id = newId; }
 
     virtual ~Shape() {}
 };

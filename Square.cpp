@@ -30,8 +30,16 @@ void Square::draw(std::vector<std::vector<char> >& grid) const {
     }
 }
 
-std::string Square::getInfo() const {
-    return "ID: " + std::to_string(id) + ", Type: Square, Coordinates: (" +
+std::string Square::getInfoForConsole() const {
+    return "ID: " + std::to_string(getId()) + ", Type: Square, Coordinates: (" +
            std::to_string(x) + ", " + std::to_string(y) + "), Width: " +
            std::to_string(width) + ", Height: " + std::to_string(height);
+}
+
+std::string Square::getInfoForFile() const {
+    return std::to_string(getId()) + " Square " +
+           std::to_string(x) + " " +
+           std::to_string(y) + " " +
+           std::to_string(width) + " " +
+           std::to_string(height);
 }

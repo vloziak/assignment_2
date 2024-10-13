@@ -53,12 +53,22 @@ int main() {
             board.print();
         } else if (cmd == "clear") {
             board.clear();
+        } else if (cmd == "undo") {
+            board.undo();
         } else if (cmd == "shapes") {
             board.displayShapes();
         } else if (cmd == "help") {
            std::cout << "help me";
         } else if (cmd == "list") {
             board.listShapes();
+        } else if (cmd == "save") {
+            std::string fileName;
+            iss >> fileName;
+            board.save(fileName);
+        } else if (cmd == "load") {
+            std::string fileName;
+            iss >> fileName;
+            board.load(fileName);
         } else if (cmd == "exit") {
             break;
         } else {

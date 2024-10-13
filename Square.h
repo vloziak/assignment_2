@@ -9,7 +9,8 @@ class Square : public Shape {
 public:
     Square(int x, int y, int width, int height);
     void draw(std::vector<std::vector<char> >& grid) const override;
-    std::string getInfo() const override;
+    std::string getInfoForFile() const override;
+    std::string getInfoForConsole() const override;
 };
 
 #endif // SQUARE_H

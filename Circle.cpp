@@ -29,8 +29,15 @@ void Circle::draw(std::vector<std::vector<char> >& grid) const {
 }
 
 
-std::string Circle::getInfo() const {
-    return "ID: " + std::to_string(id) + ", Type: Triangle, Coordinates: (" +
+std::string Circle::getInfoForConsole() const {
+    return "ID: " + std::to_string(getId()) + ", Type: Circle, Coordinates: (" +
            std::to_string(centerX) + ", " + std::to_string(centerY) + "), Radius: " +
+           std::to_string(radius);
+}
+
+std::string Circle::getInfoForFile() const {
+    return std::to_string(getId()) + " Circle " +
+           std::to_string(centerX) + " " +
+           std::to_string(centerY) + " " +
            std::to_string(radius);
 }
