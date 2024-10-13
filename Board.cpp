@@ -27,6 +27,7 @@ void Board::print() const {
 }
 void Board::clear() {
     grid.assign(30, std::vector<char>(100, ' '));
+    shapes.clear();
 }
 
 void Board::addShape(Shape* shape) {
